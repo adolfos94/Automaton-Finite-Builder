@@ -13,4 +13,4 @@
 
 The main language of the application is on Spanish, but I can easily change it to English. Just let me know (adolfo2794@gmail.com).
 
-![Scheme](images/example.png)
+![Scheme](/images/example.png)
