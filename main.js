@@ -34,7 +34,7 @@ while (indexWhileStates < numStates) {
         defaultInput: 'q' + indexWhileStates
     });
 
-    typeState = ['Initial', 'NonAccept', 'Final'],
+    typeState = ['Initial', 'NonAccept', 'Final', 'Initial y Final'],
         indexTypeState = readlineSync.keyInSelect(typeState, 'Define el tipo de estado: ');
 
     var transitionsArray = [];
@@ -72,6 +72,9 @@ while (typeState[indexTypeState] != undefined) {
 
         console.log(automata)
 
+        if (automata.transitions.length == 0)
+            automataAccepted = false;
+
         for (j = 0; j < automata.transitions.length; j++) {
             console.log(colors.green("Letra: " + letra + " -> transition: " + automata.transitions[j]._transition))
             if (automata.transitions[j]._transition == letra) {
@@ -89,13 +92,17 @@ while (typeState[indexTypeState] != undefined) {
             break;
     }
 
-    if (automata.estado != "Final") {
+    if (automata.estado == "Final" && automataAccepted) {
+        console.log(colors.italic.underline.red("¡Cadena aceptada!"))
+    } else if (automata.estado == "Initial y Final" && automataAccepted) {
+        console.log(colors.italic.underline.red("¡Cadena aceptada!"))
+    } else {
         automataAccepted = false;
         console.log(colors.magenta("El estado no es final"))
     }
 
     if (automataAccepted)
-        console.log(colors.italic.underline.red("¡Cadena aceptada!"))
+        console.log(colors.italic.underline.red("¡El automata acepta la Cadena: " + cadena))
     else
         console.log(colors.red("¡ERROR!"))
 
